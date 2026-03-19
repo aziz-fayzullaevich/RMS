@@ -1,5 +1,5 @@
 import { lazy, Suspense } from "react";
-import { createBrowserRouter, Navigate, replace } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import Layout from "../../layout/layout";
 import { ROUTES } from "../../constants/routes";
 import { CustomLoader } from "../../ui/custom-loader";
@@ -32,7 +32,7 @@ export const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <Navigate to={mockAuth.role === 'ADMIN' ? '/admin' : ROUTES.USER.DASHBOARD} replace />,
+            element: <Navigate to={mockAuth.role === 'USER' ?  ROUTES.USER.PROFILE : ROUTES.ADMIN.PROFILE} replace />,
           },
           {
             path: ROUTES.USER.DASHBOARD,

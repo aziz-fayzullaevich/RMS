@@ -1,7 +1,5 @@
-const Register = () => {
-  return (
-    <div>Register</div>
-  )
-}
+import AuthForm from "../../features/auth/ui/auth-form";
 
-export default Register
+const Register = () => <AuthForm />
+
+export default Register;

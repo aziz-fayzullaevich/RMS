@@ -1,6 +1,6 @@
 import { NavLink, Stack, Text, Box } from '@mantine/core';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { USER_SIDEBAR_LINKS } from '../shared/constants/sidebar-linsk';
+import { ADMIN_SIDEBAR_LINKS, USER_SIDEBAR_LINKS } from '../shared/constants/sidebar-linsk';
 
 export const Sidebar = () => {
     const { pathname } = useLocation();

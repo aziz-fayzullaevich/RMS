@@ -1,6 +1,7 @@
+
 const UserMainPage = () => {
     return (
-        <div>UserMainPage</div>
+        <div>234567</div>
     )
 }
 

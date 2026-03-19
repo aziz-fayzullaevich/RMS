@@ -1,10 +1,11 @@
-import { AppShell, Burger, Group, ActionIcon, Avatar, useMantineColorScheme, Select, Flex, Image } from '@mantine/core';
+import { AppShell, Burger, Group, ActionIcon, Avatar, useMantineColorScheme, Select, Flex, Image, Stack } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconSun, IconMoon, IconLanguage } from '@tabler/icons-react';
 import { Outlet, useNavigate } from 'react-router-dom';
 import { Sidebar } from '../../widgets/sidebar';
 import { ROUTES } from '../constants/routes';
 import rms_logo from '../../assets/rms-logo.png';
+import { CustomBreadcrumbs } from '../ui/custom-breadcrumbs';
 
 function Layout() {
   const [opened, { toggle }] = useDisclosure();
@@ -58,7 +59,10 @@ function Layout() {
       </AppShell.Navbar>
 
       <AppShell.Main bg={colorScheme === 'dark' ? 'dark.8' : 'gray.0'}>
-        <Outlet />
+        <Stack>
+          <CustomBreadcrumbs />
+          <Outlet />
+        </Stack>
       </AppShell.Main>
     </AppShell>
   );
