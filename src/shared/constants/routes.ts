@@ -1,7 +1,8 @@
 export const ROUTES = {
     AUTH: {
-        LOGIN: '/login',
-        REGISTER: '/register',
+        AUTH: '/auth',
+        LOGIN: '/auth/login',
+        REGISTER: '/auth/register',
     },
     USER: {
         DASHBOARD: '/dashboard',

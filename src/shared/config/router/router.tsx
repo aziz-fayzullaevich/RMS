@@ -4,25 +4,51 @@ import Layout from "../../layout/layout";
 import { ROUTES } from "../../constants/routes";
 import { CustomLoader } from "../../ui/custom-loader";
 import { ProtectedRoute } from "./protected-route";
+import LoginPage from "../../../pages/auth/login-page";
+import RegisterPage from "../../../pages/auth/register-page";
 
-const LoginPage = lazy(() => import('../../../pages/auth/login'));
-const RegisterPage = lazy(() => import('../../../pages/auth/register'));
+const AuthPage = lazy(() => import('../../../pages/auth/auth-page'));
 
 const UserDashboard = lazy(() => import('../../../pages/user/login-main-page'));
 const MyRequests = lazy(() => import('../../../pages/user/my-requests'));
 const RequestList = lazy(() => import('../../../pages/user/request-list'));
 const UserProfile = lazy(() => import('../../../pages/user/profile'));
 
-const UsersList = lazy(() => import('../../../pages/admin/admin-main-page'));
-const AllRequests = lazy(() => import('../../../pages/admin/all-requsts'));
-const AdminProfile = lazy(() => import('../../../pages/admin/profile'));
+// -=ADMIN-DASHBOARD=-
+// const UsersList = lazy(() => import('../../../pages/admin/admin-main-page'));
+// const AllRequests = lazy(() => import('../../../pages/admin/all-requsts'));
+// const AdminProfile = lazy(() => import('../../../pages/admin/profile'));
 
 const mockAuth = {
-    isAuthenticated: true,
-    role: 'USER' as const,
+  isAuthenticated: false,
+  role: 'USER' as const,
 };
 
 export const router = createBrowserRouter([
+  {
+    path: '/login',
+    element: <Navigate to={ROUTES.AUTH.LOGIN} replace />
+  },
+  {
+    path: ROUTES.AUTH.AUTH,
+    element: <Suspense fallback={<CustomLoader />}>
+      <AuthPage />
+    </Suspense>,
+    children: [
+      {
+        index: true,
+        element: <Navigate to='login' replace />
+      },
+      {
+        path: 'login',
+        element: <LoginPage />
+      },
+      {
+        path: 'register',
+        element: <RegisterPage />
+      }
+    ]
+  },
   {
     path: '/',
     element: <ProtectedRoute isAllowed={mockAuth.isAuthenticated} />,
@@ -32,7 +58,7 @@ export const router = createBrowserRouter([
         children: [
           {
             index: true,
-            element: <Navigate to={mockAuth.role === 'USER' ?  ROUTES.USER.PROFILE : ROUTES.ADMIN.PROFILE} replace />,
+            element: <Navigate to={mockAuth.role === 'USER' ? ROUTES.USER.PROFILE : ROUTES.ADMIN.PROFILE} replace />,
           },
           {
             path: ROUTES.USER.DASHBOARD,
@@ -70,12 +96,5 @@ export const router = createBrowserRouter([
       },
     ],
   },
-  {
-    path: ROUTES.AUTH.LOGIN,
-    element: <Suspense fallback={<CustomLoader />}><LoginPage /></Suspense>,
-  },
-  {
-    path: ROUTES.AUTH.REGISTER,
-    element: <Suspense fallback={<CustomLoader />}><RegisterPage /></Suspense>,
-  },
+
 ]);

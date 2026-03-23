@@ -49,6 +49,5 @@ export const Login = () => {
         </Stack>
       </form>
     </Stack>
-
   )
 }

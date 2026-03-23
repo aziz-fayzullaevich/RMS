@@ -1,7 +1,6 @@
 import { Center, Flex, Image, Paper, Stack, Text } from "@mantine/core";
 import rms_logo from '../../../assets/rms-logo.png';
-import { Login } from "./login";
-import { Register } from "./register";
+import { Outlet } from "react-router-dom";
 
 const AuthForm = () => {
     return (
@@ -18,8 +17,7 @@ const AuthForm = () => {
                             RMS — это система управления внутренними документами и заявками.
                         </Text>
                     </Stack>
-                    <Login />
-                    {/* <Register /> */}
+                    <Outlet />
                 </Flex>
             </Paper>
         </Center>
