@@ -1,7 +1,5 @@
-const Profile = () => {
-  return (
-    <div>Profile</div>
-  )
-}
+import { Profile } from "../../features/user/profile/ui/profile";
 
-export default Profile;
+const ProfilePage = () => <Profile />
+
+export default ProfilePage;

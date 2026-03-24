@@ -9,9 +9,9 @@ import RegisterPage from "../../../pages/auth/register-page";
 
 const AuthPage = lazy(() => import('../../../pages/auth/auth-page'));
 
-const UserDashboard = lazy(() => import('../../../pages/user/login-main-page'));
+const UserDashboard = lazy(() => import('../../../pages/user/dashboard-page'));
 const MyRequests = lazy(() => import('../../../pages/user/my-requests'));
-const RequestList = lazy(() => import('../../../pages/user/request-list'));
+const RequestList = lazy(() => import('../../../pages/user/requests-list'));
 const UserProfile = lazy(() => import('../../../pages/user/profile'));
 
 // -=ADMIN-DASHBOARD=-

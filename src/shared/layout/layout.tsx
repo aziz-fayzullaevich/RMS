@@ -1,4 +1,4 @@
-import { AppShell, Burger, Group, ActionIcon, Avatar, useMantineColorScheme, Select, Flex, Image, Stack } from '@mantine/core';
+import { AppShell, Burger, Group, ActionIcon, Avatar, useMantineColorScheme, Select, Image, Stack } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconSun, IconMoon, IconLanguage } from '@tabler/icons-react';
 import { Outlet, useNavigate } from 'react-router-dom';
@@ -26,9 +26,7 @@ function Layout() {
         <Group h="100%" px="md" justify="space-between">
           <Group>
             <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
-            <Flex>
-              <Image src={rms_logo} w={100} h={50} />
-            </Flex>
+            <Image src={rms_logo} w={100} h={50} />
           </Group>
 
           <Group gap="sm">

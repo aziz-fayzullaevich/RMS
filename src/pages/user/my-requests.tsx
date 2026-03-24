@@ -1,7 +1,5 @@
-const MyRequests = () => {
-  return (
-    <div>MyRequests</div>
-  )
-}
+import { MyRequests } from "../../features/user/my-request/ui/my-requests";
 
-export default MyRequests;
+const MyRequestsPage = () => <MyRequests/>
+
+export default MyRequestsPage;
