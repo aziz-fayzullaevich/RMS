@@ -2,16 +2,22 @@ import { Button, PasswordInput, Stack, TextInput, Title } from "@mantine/core"
 import { Controller, useForm } from "react-hook-form";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../../shared/constants/routes";
+import { useAuthQueries } from "../queries/auth-queries";
+import type { LoginUser } from "../types/auth-types";
 
 export const Login = () => {
+
+  const { mutate: handleLogin, isPending } = useAuthQueries.useLogin();
+
   const { register, control, formState: { errors }, handleSubmit, reset } = useForm({
     defaultValues: {
-      email: '',
+      username: '',
       password: ''
     }
   });
 
-  const onSubmit = () => {
+  const onSubmit = (data: Partial<LoginUser>) => {
+    handleLogin({ data })
     reset();
   };
 
@@ -21,10 +27,10 @@ export const Login = () => {
         <Stack>
           <TextInput
             label="Логин"
-            placeholder="exmample@gmail.com"
+            placeholder="Введите логин"
             withAsterisk
-            {...register('email', { required: 'Обязательное поле' })}
-            error={errors.email?.message}
+            {...register('username', { required: 'Обязательное поле' })}
+            error={errors.username?.message}
           />
           <Controller
             name="password"
@@ -43,11 +49,11 @@ export const Login = () => {
             )}
           />
           <Stack align="center">
-            <Button w={'100%'} type="submit">Войти</Button>
+            <Button w={'100%'} type="submit" loading={isPending}>Войти</Button>
             <Link to={ROUTES.AUTH.REGISTER} style={{ color: "gray" }}>Зарегистрировать</Link>
           </Stack>
         </Stack>
       </form>
     </Stack>
   )
-}
+};

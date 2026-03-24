@@ -19,9 +19,14 @@ const UserProfile = lazy(() => import('../../../pages/user/profile'));
 // const AllRequests = lazy(() => import('../../../pages/admin/all-requsts'));
 // const AdminProfile = lazy(() => import('../../../pages/admin/profile'));
 
-const mockAuth = {
-  isAuthenticated: false,
-  role: 'USER' as const,
+const HomeRedirect = () => {
+  const userData = localStorage.getItem('user');
+  if (!userData) return <Navigate to={ROUTES.AUTH.LOGIN} replace />;
+  
+  const user = JSON.parse(userData);
+  return user.role === 'admin' 
+    ? <Navigate to={ROUTES.ADMIN.PROFILE} replace /> 
+    : <Navigate to={ROUTES.USER.PROFILE} replace />;
 };
 
 export const router = createBrowserRouter([
@@ -51,14 +56,14 @@ export const router = createBrowserRouter([
   },
   {
     path: '/',
-    element: <ProtectedRoute isAllowed={mockAuth.isAuthenticated} />,
+    element: <ProtectedRoute/>,
     children: [
       {
         element: <Layout />,
         children: [
           {
             index: true,
-            element: <Navigate to={mockAuth.role === 'USER' ? ROUTES.USER.PROFILE : ROUTES.ADMIN.PROFILE} replace />,
+            element: < HomeRedirect/>,
           },
           {
             path: ROUTES.USER.DASHBOARD,

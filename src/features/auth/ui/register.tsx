@@ -1,6 +1,8 @@
 import { Button, Grid, GridCol, NumberInput, PasswordInput, Stack, TextInput, Title } from "@mantine/core"
 import { DateInput } from "@mantine/dates";
 import { Controller, useForm } from "react-hook-form";
+import { Link } from "react-router-dom";
+import { ROUTES } from "../../../shared/constants/routes";
 
 export const Register = () => {
   const { register, control, formState: { errors }, handleSubmit, reset } = useForm({
@@ -125,6 +127,7 @@ export const Register = () => {
           />
           <Stack align="center">
             <Button w={'100%'} type="submit">Зрегистрироваться</Button>
+            <Link to={ROUTES.AUTH.LOGIN} style={{ color: "gray" }}>Назад</Link>
           </Stack>
         </Stack>
       </form>
